@@ -13,8 +13,8 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     go build
 
-#FROM alpine:3.10
-#
-#COPY --from=build-env /usr/src/app/sqs_demo /usr/local/bin/
-#
-#CMD ["sqs_demo"]
+FROM alpine:3.10
+
+COPY --from=build-env /usr/src/app/sqs_demo /usr/local/bin/
+
+CMD ["sqs_demo"]

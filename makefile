@@ -8,7 +8,7 @@ push_image:
 	docker tag sqs_demo_sqs_demo mwaaas/sqs_go_demo
 	docker push mwaaas/sqs_go_demo
 
-build_and_push: push_image build
+build_and_push: build push_image
 
 list_queues:
 	 aws --endpoint-url=http://localhost:4100 sqs list-queues
