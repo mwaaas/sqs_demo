@@ -1,0 +1,12 @@
+POST http://localhost:4200/sns/send_message
+Content-Type: application/json
+
+{"message": {
+  "foo": "bar"
+},
+  "TopicArn": "arn:aws:sns:eu-west-1:000000000000:test_topic",
+  "MessageStructure": "raw",
+  "endpoint": "http://localhost:4100"
+}
+
+###

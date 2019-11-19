@@ -1,0 +1,30 @@
+version: "3.4"
+services:
+  endpoints:
+    image: rancher/pause:3.1
+    ports:
+      - 4100:4100 # go aws 
+      - 4200:80   # sns simulator 
+  
+  sqs_demo:
+    build:
+      context: .
+    network_mode: service:endpoints
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      - ENDPOINT=http://localhost:4100
+      - URL=http://eu-west-1.localhost:4100/queue/test_queue
+
+  goaws:
+    network_mode: service:endpoints
+    image: pafortin/goaws
+    volumes:
+      - ./goaws.yaml:/conf/goaws.yaml
+
+
+  sns_simulator:
+    image: mwaaas/aws_helper:0.0.4
+    network_mode: service:endpoints
+    volumes:
+      - $HOME/.aws:/root/.aws

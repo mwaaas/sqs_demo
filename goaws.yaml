@@ -1,0 +1,16 @@
+Local:
+  Host: localhost
+  Port: 4100
+  Region: eu-west-1
+  LogMessages: true
+  LogFile: ./goaws_messages.log
+  QueueAttributeDefaults:
+    VisibilityTimeout: 30
+    ReceiveMessageWaitTimeSeconds: 0
+  Queues:
+    - Name: test_queue
+  Topics:
+    - Name: test_topic
+      Subscriptions:
+        - QueueName: test_queue
+          Raw: true
